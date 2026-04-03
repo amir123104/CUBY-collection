@@ -25,7 +25,7 @@
       font-weight: 400;
       letter-spacing: -0.01em;
       overflow-x: hidden;
-      padding-bottom: 90px; /* space for fixed bottom navbar */
+      padding-bottom: 90px;
     }
 
     /* pixel-inspired modern typography for headings */
@@ -119,46 +119,6 @@
       filter: grayscale(100%) contrast(1.02);
     }
 
-    /* buy now button overlay on hero right image */
-    .buy-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .buy-btn {
-      pointer-events: auto;
-      background: transparent;
-      border: 1.5px solid white;
-      color: white;
-      padding: 0.9rem 2rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      text-decoration: none;
-      text-align: center;
-      min-width: 180px;
-      transition: all 0.2s ease;
-      border-radius: 40px;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      backdrop-filter: none;
-      background-color: rgba(0,0,0,0.3);
-    }
-    .buy-btn:hover {
-      background: white;
-      color: black;
-      border-color: white;
-      transform: translateY(-2px);
-    }
-
     /* ----- PRODUCT HIGHLIGHT (floating image, no container) ----- */
     .product-highlight {
       display: flex;
@@ -173,7 +133,7 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      min-height: 600px; /* increased to accommodate larger images */
+      min-height: 600px;
     }
 
     .floating-image {
@@ -189,7 +149,6 @@
       cursor: default;
     }
 
-    /* images now 2x larger (760px max-width) */
     .default-img, .hover-img {
       transition: opacity 0.3s ease;
       display: block;
@@ -232,6 +191,34 @@
       color: #4a4a4a;
       border-left: 2px solid #000;
       padding-left: 12px;
+      margin-bottom: 2rem;
+    }
+
+    /* Buy button styling (matching original but adapted for light background) */
+    .product-buy-btn {
+      display: inline-block;
+      background: transparent;
+      border: 1.5px solid #000000;
+      color: #000000;
+      padding: 0.9rem 2rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-decoration: none;
+      text-align: center;
+      min-width: 180px;
+      transition: all 0.2s ease;
+      border-radius: 40px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      margin-top: 1rem;
+    }
+
+    .product-buy-btn:hover {
+      background: #000000;
+      color: #ffffff;
+      transform: translateY(-2px);
     }
 
     /* ----- POCKET SECTION (text only, centered) ----- */
@@ -470,7 +457,7 @@
 <body>
 
 <main>
-  <!-- 1. HERO SPLIT SCREEN with BUY NOW button over right image -->
+  <!-- 1. HERO SPLIT SCREEN (no button overlay anymore) -->
   <div class="hero-split">
     <div class="hero-left">
       <div class="hero-left-content fade-section">
@@ -480,13 +467,10 @@
     </div>
     <div class="hero-right">
       <img src="https://i.postimg.cc/CMs0CNsF/CUBYcollection.png" alt="Cuby hero visual" id="HERO_RIGHT_IMAGE">
-      <div class="buy-overlay">
-        <a href="https://scxtax-ra.myshopify.com/products/cuby-matrix-mini" target="_blank" class="buy-btn">BUY NOW</a>
-      </div>
     </div>
   </div>
 
-  <!-- 2. PRODUCT HIGHLIGHT SECTION (no divider) -->
+  <!-- 2. PRODUCT HIGHLIGHT SECTION with BUY NOW button below text -->
   <div class="container">
     <section class="fade-section">
       <div class="product-highlight">
@@ -499,12 +483,13 @@
         <div class="highlight-right">
           <div class="product-name">CUBY matrix MINI</div>
           <div class="popular-badge">most popular</div>
+          <a href="https://scxtax-ra.myshopify.com/products/cuby-matrix-mini" target="_blank" class="product-buy-btn">BUY NOW</a>
         </div>
       </div>
     </section>
   </div>
 
-  <!-- 3. POCKET SECTION (no divider) -->
+  <!-- 3. POCKET SECTION -->
   <div class="container">
     <section class="fade-section">
       <div class="pocket-section">
@@ -514,7 +499,7 @@
     </section>
   </div>
 
-  <!-- 4. POWER SECTION (no divider) -->
+  <!-- 4. POWER SECTION -->
   <div class="container">
     <section class="fade-section">
       <div class="power-section">
@@ -529,7 +514,7 @@
     </section>
   </div>
 
-  <!-- 5. COMING SOON SECTION (no divider) -->
+  <!-- 5. COMING SOON SECTION -->
   <div class="container">
     <section class="fade-section">
       <div class="coming-soon-grid">
