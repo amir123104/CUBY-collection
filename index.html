@@ -55,14 +55,6 @@
       position: relative;
     }
 
-    /* thin divider lines */
-    .divider-light {
-      width: 100%;
-      height: 1px;
-      background: #e5e5e5;
-      margin: 0;
-    }
-
     /* fade-in scroll animations */
     .fade-section {
       opacity: 0;
@@ -116,7 +108,7 @@
       flex: 1;
       position: relative;
       overflow: hidden;
-      background: #f5f5f5; /* subtle light gray background for the image area – monochrome */
+      background: #f5f5f5;
     }
 
     .hero-right img {
@@ -138,7 +130,7 @@
       align-items: center;
       justify-content: center;
       z-index: 2;
-      pointer-events: none; /* allows clicking through to image if needed, but button is clickable */
+      pointer-events: none;
     }
     .buy-btn {
       pointer-events: auto;
@@ -158,7 +150,7 @@
       cursor: pointer;
       font-family: 'Inter', sans-serif;
       backdrop-filter: none;
-      background-color: rgba(0,0,0,0.3); /* subtle dark background to make text readable */
+      background-color: rgba(0,0,0,0.3);
     }
     .buy-btn:hover {
       background: white;
@@ -181,7 +173,7 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      min-height: 400px;
+      min-height: 600px; /* increased to accommodate larger images */
     }
 
     .floating-image {
@@ -197,10 +189,11 @@
       cursor: default;
     }
 
+    /* images now 2x larger (760px max-width) */
     .default-img, .hover-img {
       transition: opacity 0.3s ease;
       display: block;
-      max-width: 380px;
+      max-width: 760px;
       width: 100%;
       height: auto;
     }
@@ -434,6 +427,12 @@
       section {
         padding: 80px 0;
       }
+      .default-img, .hover-img {
+        max-width: 90vw;
+      }
+      .highlight-left {
+        min-height: auto;
+      }
     }
 
     @media (max-width: 640px) {
@@ -464,15 +463,8 @@
         font-size: 0.65rem;
       }
     }
-
-    /* extra spacing helpers */
-    .mt-2 { margin-top: 0.5rem; }
-    .mt-4 { margin-top: 1rem; }
-    .mb-2 { margin-bottom: 0.5rem; }
-    .mb-4 { margin-bottom: 1rem; }
-    .text-center { text-align: center; }
   </style>
-  <!-- Google Fonts: geometric sans + space grotesk (pixel vibe) -->
+  <!-- Google Fonts: geometric sans + space grotesk -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -494,15 +486,13 @@
     </div>
   </div>
 
-  <!-- 2. PRODUCT HIGHLIGHT SECTION -->
+  <!-- 2. PRODUCT HIGHLIGHT SECTION (no divider) -->
   <div class="container">
     <section class="fade-section">
       <div class="product-highlight">
         <div class="highlight-left">
           <div class="hover-image-container">
-            <!-- idle image (default) -->
             <img class="default-img floating-image" src="https://i.postimg.cc/Pf2scqp9/Adobe-Express-file.png" alt="Cuby Matrix Mini" id="MATRIX_MINI_IDLE">
-            <!-- active image on hover -->
             <img class="hover-img floating-image" src="https://i.postimg.cc/3rn56w4b/Adobe-Express-file-(1).png" alt="Cuby Matrix Mini active" id="MATRIX_MINI_ACTIVE">
           </div>
         </div>
@@ -514,10 +504,7 @@
     </section>
   </div>
 
-  <!-- thin divider -->
-  <div class="container"><hr class="divider-light"></div>
-
-  <!-- 3. POCKET SECTION -->
+  <!-- 3. POCKET SECTION (no divider) -->
   <div class="container">
     <section class="fade-section">
       <div class="pocket-section">
@@ -527,10 +514,7 @@
     </section>
   </div>
 
-  <!-- thin divider -->
-  <div class="container"><hr class="divider-light"></div>
-
-  <!-- 4. POWER SECTION (vertical) -->
+  <!-- 4. POWER SECTION (no divider) -->
   <div class="container">
     <section class="fade-section">
       <div class="power-section">
@@ -545,10 +529,7 @@
     </section>
   </div>
 
-  <!-- thin divider -->
-  <div class="container"><hr class="divider-light"></div>
-
-  <!-- 5. COMING SOON SECTION -->
+  <!-- 5. COMING SOON SECTION (no divider) -->
   <div class="container">
     <section class="fade-section">
       <div class="coming-soon-grid">
@@ -566,9 +547,6 @@
     </section>
   </div>
 
-  <!-- thin divider -->
-  <div class="container"><hr class="divider-light"></div>
-
   <!-- 6. FOOTER -->
   <div class="container">
     <div class="footer">
@@ -585,20 +563,19 @@
 
 <script>
   (function() {
-    // FADE-IN SCROLL ANIMATIONS (Intersection Observer)
+    // FADE-IN SCROLL ANIMATIONS
     const fadeElements = document.querySelectorAll('.fade-section');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target); // animate only once
+          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.2, rootMargin: "0px 0px -20px 0px" });
     
     fadeElements.forEach(el => observer.observe(el));
     
-    // force initial visible check for elements already in view
     window.addEventListener('load', () => {
       fadeElements.forEach(el => {
         const rect = el.getBoundingClientRect();
@@ -609,7 +586,7 @@
       });
     });
     
-    // BOTTOM NAVIGATION: HOME scrolls to top of hero, ABOUT does nothing (no navigation)
+    // BOTTOM NAVIGATION: HOME scrolls to top, ABOUT does nothing
     const homeBtn = document.getElementById('navHome');
     const aboutBtn = document.getElementById('navAbout');
     if (homeBtn) {
@@ -620,12 +597,7 @@
     }
     if (aboutBtn) aboutBtn.addEventListener('click', (e) => e.preventDefault());
     
-    // optional: replace image URLs with custom values if needed (already using placeholders with IDs)
-    console.log('CRP CUBY collection — monochrome Swiss-tech page ready. Replaceable image URLs:');
-    console.log('HERO_RIGHT_IMAGE, MATRIX_MINI_IDLE, MATRIX_MINI_ACTIVE, POWER_IMAGE');
-    
-    // ensure hover transition works (CSS handles opacity)
-    // additional micro-interaction: subtle scale on hover of product image (optional but minimal)
+    // Subtle scale on hover for product image
     const hoverContainer = document.querySelector('.hover-image-container');
     if (hoverContainer) {
       hoverContainer.style.transition = 'transform 0.2s ease';
